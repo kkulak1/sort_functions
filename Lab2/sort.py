@@ -1,6 +1,5 @@
 import sys
 import argparse
-from turtle import right
 
 
 def open_file(path):
@@ -56,7 +55,7 @@ def selection_sort(words):
     length = len(words)
     for i in range(length - 1):
         min = i
-        for j in range(i+1, length - 1):
+        for j in range(i+1, length):
             if words[j] < words[min]:
                 min = j
         words[i], words[min] = words[min], words[i]
@@ -94,6 +93,25 @@ def merge_sort(words):
     return sorted_words
 
 
+def quick_sort(words):
+    less = []
+    equal = []
+    greater = []
+
+    if len(words) > 1:
+        pivot = words[0]
+        for x in words:
+            if x < pivot:
+                less.append(x)
+            elif x == pivot:
+                equal.append(x)
+            elif x > pivot:
+                greater.append(x)
+        return quick_sort(less)+equal+quick_sort(greater)
+    else:
+        return words
+
+
 def main(args):
     parser = argparse.ArgumentParser()
     parser.add_argument('path')
@@ -105,8 +123,13 @@ def main(args):
     print("--------------------------------")
     print(merge_sort(words[:1000]))
     print("--------------------------------")
+
     print(words[:1000])
+    print(quick_sort(words[:1000]))
 
 
 if __name__ == "__main__":
     main(sys.argv[1:])
+
+
+# dasdasda
