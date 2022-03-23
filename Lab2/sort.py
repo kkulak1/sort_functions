@@ -135,6 +135,7 @@ def main(args):
     print("--------------------------------")
     print(quick_sort(words[:1000]))
 
+    # ###
     # do kazdej funkcji trzeba obliczyc czas 10 razy (1000, 2000, ...), musi to byc w postaci listy
     # wtedy zamienisz w data_for_plotter '1' tymi listami tymi listami
     # mozesz zrobic liste list i tez wykorzystac i
