@@ -1,5 +1,7 @@
 import sys
 import argparse
+import matplotlib.pyplot as plt
+from numpy import sort
 
 
 def open_file(path):
@@ -112,6 +114,14 @@ def quick_sort(words):
         return words
 
 
+def plotter(sort_name, time):
+    fig, ax = plt.subplots()
+    ax.plot([x * 1000 for x in range(1, 11)],
+            time, linewidth=2.0)
+    ax.set(xlabel='words(n)', ylabel='time(s)', title=sort_name)
+    plt.show()
+
+
 def main(args):
     parser = argparse.ArgumentParser()
     parser.add_argument('path')
@@ -124,6 +134,21 @@ def main(args):
     print(merge_sort(words[:1000]))
     print("--------------------------------")
     print(quick_sort(words[:1000]))
+
+    # ###
+    # do kazdej funkcji trzeba obliczyc czas 10 razy (1000, 2000, ...), musi to byc w postaci listy
+    # wtedy zamienisz w data_for_plotter '1' tymi listami tymi listami
+    # mozesz zrobic liste list i tez wykorzystac i
+
+    time = [1, 2, 4, 2, 10, 7, 7, 8, 5, 3]
+
+    data_for_plotter = [("bubble_sort", 1),
+                        ("selection sort", 1),
+                        ("merge sort", 1),
+                        ("quick sort", 1)]
+
+    for i in range(4):
+        plotter(data_for_plotter[i][0], time)
 
 
 if __name__ == "__main__":
