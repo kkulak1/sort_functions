@@ -1,7 +1,13 @@
 import sys
 import argparse
 import matplotlib.pyplot as plt
-from numpy import sort
+# from time_data import (
+#     get_bubble_sort_time,
+#     get_selection_sort_time,
+#     get_merge_sort_time,
+#     get_quick_sort_time
+# )
+import time_data
 
 
 def open_file(path):
@@ -140,15 +146,13 @@ def main(args):
     # wtedy zamienisz w data_for_plotter '1' tymi listami tymi listami
     # mozesz zrobic liste list i tez wykorzystac i
 
-    time = [1, 2, 4, 2, 10, 7, 7, 8, 5, 3]
-
-    data_for_plotter = [("bubble_sort", 1),
-                        ("selection sort", 1),
-                        ("merge sort", 1),
-                        ("quick sort", 1)]
+    data_for_plotter = [("bubble_sort", time_data.get_bubble_sort_time(words)),
+                        ("selection sort", time_data.get_selection_sort_time(words)),
+                        ("merge sort", time_data.get_merge_sort_time(words)),
+                        ("quick sort", time_data.get_quick_sort_time(words))]
 
     for i in range(4):
-        plotter(data_for_plotter[i][0], time)
+        plotter(data_for_plotter[i][0], data_for_plotter[i][1])
 
 
 if __name__ == "__main__":
