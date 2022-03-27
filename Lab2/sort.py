@@ -1,12 +1,6 @@
 import sys
 import argparse
 import matplotlib.pyplot as plt
-# from time_data import (
-#     get_bubble_sort_time,
-#     get_selection_sort_time,
-#     get_merge_sort_time,
-#     get_quick_sort_time
-# )
 import time_data
 
 
@@ -26,15 +20,6 @@ def read_txt(handle):
     return words
 
 
-# def bubble_sort(words):
-#     length = len(words)
-#     for i in range(length - 1):
-#         for j in range(length - i - 1):
-#             if words[j] > words[j + 1]:
-#                 words[j], words[j+1] = words[j+1], words[j]
-#     return words
-
-
 def bubble_sort(words):
     length = len(words)
     for i in range(length - 1):
@@ -45,18 +30,6 @@ def bubble_sort(words):
                 words[j] = b
                 words[j+1] = a
     return words
-
-# def bubble_sort(words):
-#     length = len(words)
-#     for i in range(length):
-#         for j in range(length - i):
-#             a = words[j]
-#             if a != words[-1]:
-#                 b = words[j+1]
-#                 if a > b:
-#                     words[j] = b
-#                     words[j+1] = a
-#     return words
 
 
 def selection_sort(words):
@@ -126,6 +99,7 @@ def plotter(sort_name, time):
             time, linewidth=2.0)
     ax.set(xlabel='words(n)', ylabel='time(s)', title=sort_name)
     plt.show()
+    # fig.savefig(sort_name, dpi=fig.dpi)
 
 
 def main(args):
@@ -133,18 +107,13 @@ def main(args):
     parser.add_argument('path')
     args = parser.parse_args(args)
     words = open_file(args.path)
-    print(bubble_sort(words[:1000]))
-    print("--------------------------------")
-    print(selection_sort(words[:1000]))
-    print("--------------------------------")
-    print(merge_sort(words[:1000]))
-    print("--------------------------------")
-    print(quick_sort(words[:1000]))
-
-    # ###
-    # do kazdej funkcji trzeba obliczyc czas 10 razy (1000, 2000, ...), musi to byc w postaci listy
-    # wtedy zamienisz w data_for_plotter '1' tymi listami tymi listami
-    # mozesz zrobic liste list i tez wykorzystac i
+    # print(bubble_sort(words[:1000]))
+    # print("--------------------------------")
+    # print(selection_sort(words[:1000]))
+    # print("--------------------------------")
+    # print(merge_sort(words[:1000]))
+    # print("--------------------------------")
+    # print(quick_sort(words[:1000]))
 
     data_for_plotter = [("bubble_sort", time_data.get_bubble_sort_time(words)),
                         ("selection sort", time_data.get_selection_sort_time(words)),
@@ -152,6 +121,7 @@ def main(args):
                         ("quick sort", time_data.get_quick_sort_time(words))]
 
     for i in range(4):
+        print(data_for_plotter[i][1])
         plotter(data_for_plotter[i][0], data_for_plotter[i][1])
 
 
